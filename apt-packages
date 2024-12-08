@@ -1,0 +1,11 @@
+git
+apparmor
+jq
+wget
+curl
+udisks2
+libglib2.0-bin
+network-manager
+dbus
+systemd-journal-remote
+systemd-resolved
