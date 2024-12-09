@@ -16,7 +16,14 @@ install_homeassistant() {
     sudo dpkg -i /tmp/supervised.deb
 }
 
+static_ip() {
+    sudo mkdir /etc/network/interfaces.d
+    sudo ln -fns $PWD/static.conf /etc/network/interfaces.d/static.conf
+}
+
 sudo apt update && sudo apt install -y $(cat apt-packages)
 
 which docker || install_docker
 apt list --installed | grep homeassistant-supervised || install_homeassistant
+static_ip
+
