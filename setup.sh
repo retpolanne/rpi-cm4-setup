@@ -17,8 +17,7 @@ install_homeassistant() {
 }
 
 static_ip() {
-    sudo mkdir /etc/network/interfaces.d
-    sudo ln -fns $PWD/static.conf /etc/network/interfaces.d/static.conf
+	sudo nmcli connection modify 'Supervisor eth0' connection.autoconnect yes ipv4.method manual ipv4.address 192.168.0.142/24 ipv4.gateway 192.168.0.1 ipv4.dns 1.1.1.1
 }
 
 sudo apt update && sudo apt install -y $(cat apt-packages)
