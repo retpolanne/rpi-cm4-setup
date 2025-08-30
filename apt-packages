@@ -9,3 +9,7 @@ network-manager
 dbus
 systemd-journal-remote
 systemd-resolved
+cryptsetup
+btrfs-progs
+yubikey-luks
+yubikey-personalization

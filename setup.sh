@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-HA_AGENT_VER=1.6.0
-HA_SUPER_VER=2.0.0
+HA_AGENT_VER=1.7.2
+HA_SUPER_VER=3.1.0
 
 install_docker() {
     curl -fsSL get.docker.com | sh
@@ -23,6 +23,10 @@ static_ip() {
 sudo apt update && sudo apt install -y $(cat apt-packages)
 
 which docker || install_docker
-apt list --installed | grep homeassistant-supervised || install_homeassistant
-static_ip
+apt list --installed | grep homeassistant-supervised-test || install_homeassistant
+ip addr | grep 192.168.0.142 || static_ip
 
+# Tip from https://stafwag.github.io/blog/blog/2015/06/16/using-yubikey-neo-as-gpg-smartcard-for-ssh-authentication/
+sudo ln -fns $PWD/69-yubikey.rules /usr/lib/udev/rules.d/69-yubikey.rules
+sudo udevadm control --reload
+sudo udevadm trigger
