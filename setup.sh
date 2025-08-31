@@ -16,6 +16,15 @@ install_homeassistant() {
     sudo dpkg -i /tmp/supervised.deb
 }
 
+install_jellyfin_cpuset_limiter() {
+    sudo ln -fns $PWD/jellyfin-cpuset.service /lib/systemd/system/jellyfin-cpuset.service
+    sudo ln -fns $PWD/jellyfin-cpuset.timer /lib/systemd/system/jellyfin-cpuset.timer
+    sudo ln -fns $PWD/set-jellyfin-cpuset.sh /srv/set-jellyfin-cpuset.sh
+    sudo chmod +x /srv/set-jellyfin-cpuset.sh
+    sudo systemctl daemon-reload
+    sudo systemctl enable jellyfin-cpuset.timer
+}
+
 static_ip() {
 	sudo nmcli connection modify 'Supervisor eth0' connection.autoconnect yes ipv4.method manual ipv4.address 192.168.0.142/24 ipv4.gateway 192.168.0.1 ipv4.dns 1.1.1.1
 }

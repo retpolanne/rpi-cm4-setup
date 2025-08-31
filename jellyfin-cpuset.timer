@@ -1,0 +1,11 @@
+[Unit]
+Description=Ensure Jellyfin CPUsets are 1
+Requires=docker.service
+After=docker.service
+
+[Timer]
+OnBootSec=10s
+OnUnitActiveSec=10s
+
+[Install]
+WantedBy=timers.target
