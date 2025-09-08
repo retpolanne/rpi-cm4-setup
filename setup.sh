@@ -25,6 +25,11 @@ install_jellyfin_cpuset_limiter() {
     sudo systemctl enable jellyfin-cpuset.timer
 }
 
+install_docker_override() {
+    sudo mkdir -p /etc/systemd/system/docker.service.d/
+    sudo ln -fns $PWD/docker.service.override /etc/systemd/system/docker.service.d/override.conf
+}
+
 static_ip() {
 	sudo nmcli connection modify 'Supervisor eth0' connection.autoconnect yes ipv4.method manual ipv4.address 192.168.0.142/24 ipv4.gateway 192.168.0.1 ipv4.dns 1.1.1.1
 }
