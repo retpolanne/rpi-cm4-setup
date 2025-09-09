@@ -1,3 +1,4 @@
 [Unit]
-Requires=dev-mapper-nvmedata.device
-After=dev-mapper-nvmedata.device
+Requires=dev-mapper-nvmemapper.device
+After=dev-mapper-nvmemapper.device
+Wants=dev-mapper-nvmemapper.device

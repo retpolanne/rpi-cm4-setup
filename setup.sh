@@ -28,6 +28,9 @@ install_jellyfin_cpuset_limiter() {
 install_docker_override() {
     sudo mkdir -p /etc/systemd/system/docker.service.d/
     sudo ln -fns $PWD/docker.service.override /etc/systemd/system/docker.service.d/override.conf
+    sudo mkdir -p /etc/systemd/system/hassio-supervisor.service.d
+    sudo ln -fns $PWD/hassio-supervisor.service.override /etc/systemd/system/hassio-supervisor.service.d/override.conf
+    sudo systemctl daemon-reload
 }
 
 static_ip() {
