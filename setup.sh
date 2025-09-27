@@ -33,6 +33,11 @@ install_docker_override() {
     sudo systemctl daemon-reload
 }
 
+install_bazarr() {
+    sudo ln -fns $PWD/bazarr.service /etc/systemd/system/bazarr.service
+    sudo systemctl enable bazarr.service
+}
+
 static_ip() {
 	sudo nmcli connection modify 'Supervisor eth0' connection.autoconnect yes ipv4.method manual ipv4.address 192.168.0.142/24 ipv4.gateway 192.168.0.1 ipv4.dns 1.1.1.1
 }
@@ -47,3 +52,5 @@ ip addr | grep 192.168.0.142 || static_ip
 sudo ln -fns $PWD/69-yubikey.rules /usr/lib/udev/rules.d/69-yubikey.rules
 sudo udevadm control --reload
 sudo udevadm trigger
+
+# TODO if rebuilt from scratch, call the service functions here

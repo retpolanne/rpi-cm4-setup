@@ -6,3 +6,4 @@ mount="/data"
 
 sudo cryptsetup luksOpen "/dev/disk/by-uuid/${diskid}" "${mapper}"
 sudo mount "/dev/mapper/${mapper}" "${mount}"
+sudo btrfs quota disable /data

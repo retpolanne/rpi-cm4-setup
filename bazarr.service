@@ -1,0 +1,21 @@
+[Unit]
+Description=Bazarr service
+Requires=docker.service dev-mapper-nvmemapper.device
+After=docker.service dev-mapper-nvmemapper.device
+Wants=dev-mapper-nvmemapper.device
+
+[Service]
+Type=simple
+ExecStartPre=-/usr/bin/mkdir -p /data/bazarr/config /data/bazarr/data
+ExecStartPre=-/usr/bin/docker stop bazarr
+ExecStartPre=-/usr/bin/docker rm bazarr
+ExecStart=/usr/bin/docker run --name bazarr --net=host --cpuset-cpus "1" \
+            -v /data/bazarr/config:/config \
+            -v /data/bazarr/data:/data \
+            ghcr.io/hotio/bazarr:release-1.5.3
+ExecStop=-/usr/bin/docker stop bazarr
+ExecStop=-/usr/bin/docker rm bazarr
+
+
+[Install]
+WantedBy=default.target
