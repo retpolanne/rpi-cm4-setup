@@ -54,3 +54,8 @@ sudo udevadm control --reload
 sudo udevadm trigger
 
 # TODO if rebuilt from scratch, call the service functions here
+
+# Wireguard peer configuration
+
+ls ${HOME}/.wg/privatekey || \
+    mkdir ${HOME}/.wg; wg genkey | tee ${HOME}/.wg/privatekey | wg pubkey > ${HOME}/.wg/publickey

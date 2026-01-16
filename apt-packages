@@ -13,3 +13,4 @@ cryptsetup
 btrfs-progs
 yubikey-luks
 yubikey-personalization
+wireguard
