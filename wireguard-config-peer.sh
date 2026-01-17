@@ -5,6 +5,8 @@ set -e
 PEER_PUB_KEY="$1"
 PEER_ENDPOINT="$2"
 
+echo "This peer's endpoint: $(curl -4 ifconfig.io):51820"
+
 echo "Creating wg0 interface and peering with main peer 172.16.0.1 (the cloud peer)"
 echo "This peer's address is 172.16.0.2"
 
